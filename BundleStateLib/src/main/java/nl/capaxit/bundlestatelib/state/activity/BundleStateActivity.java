@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 /**
  * Insert documentation here.
  *
+ * TODO: Add annotation cache and separate the processing from the activity/lifecycle.
  * @author jcraane
  */
 public class BundleStateActivity extends Activity{
