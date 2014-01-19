@@ -16,18 +16,12 @@ public class BundleStateActivity extends Activity{
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        restoreBundleState(savedInstanceState);
-    }
-
-    private void restoreBundleState(final Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            BundleStateAnnotationProcessor.storeState(this, savedInstanceState);
-        }
+        BundleStateAnnotationProcessor.restoreStateIfPresent(this, savedInstanceState);
     }
 
     @Override
     protected void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
-        BundleStateAnnotationProcessor.restoreState(this, outState);
+        BundleStateAnnotationProcessor.saveState(this, outState);
     }
 }
