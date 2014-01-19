@@ -6,7 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Insert documentation here.
+ * When a field is annotation with the BundleState annotation, the field is stored/retrieved from the Bundle if the activity extends
+ * the proper superclass. For activities this is the BundleStateActivity or a subclass of it.
+ *
+ * For fragments this is the TODO.
  *
  * @author jcraane
  */

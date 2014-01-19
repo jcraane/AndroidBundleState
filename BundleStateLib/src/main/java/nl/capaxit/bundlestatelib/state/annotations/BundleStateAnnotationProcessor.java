@@ -2,11 +2,13 @@ package nl.capaxit.bundlestatelib.state.annotations;
 
 import android.os.Bundle;
 import android.util.Log;
+import nl.capaxit.bundlestatelib.state.annotations.field.BundleStateFieldProcessor;
 
 import java.lang.reflect.Field;
 
 /**
- * Insert documentation here.
+ * Processor for the BundleState annotation. Delegates to BundleStateFieldProcessor instances for specific
+ * field type processing.
  *
  * @author jcraane
  */
@@ -23,14 +25,8 @@ public final class BundleStateAnnotationProcessor {
                 for (final Field field : fields) {
                     if (field.isAnnotationPresent(BundleState.class)) {
                         final BundleState bundleState = field.getAnnotation(BundleState.class);
-                        final Class fieldType = field.getType();
-                        if (fieldType.isAssignableFrom(String.class)) {
-                            if (savedInstanceState.getString(bundleState.name()) != null) {
-                                field.setAccessible(true);
-                                field.set(target, savedInstanceState.getString(bundleState.name()));
-                            }
-                        }
-
+                        final BundleStateFieldProcessor processor = BundleStateFieldProcessorFactory.getProcessor(field);
+                        processor.restoreState(bundleState, field, target, savedInstanceState);
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -45,11 +41,8 @@ public final class BundleStateAnnotationProcessor {
             for (final Field field : fields) {
                 if (field.isAnnotationPresent(BundleState.class)) {
                     final BundleState bundleState = field.getAnnotation(BundleState.class);
-                    final Class fieldType = field.getType();
-                    if (fieldType.isAssignableFrom(String.class)) {
-                        field.setAccessible(true);
-                        outState.putString(bundleState.name(), (String) field.get(target));
-                    }
+                    final BundleStateFieldProcessor processor = BundleStateFieldProcessorFactory.getProcessor(field);
+                    processor.saveState(bundleState, field, target, outState);
                 }
             }
         } catch (IllegalAccessException e) {

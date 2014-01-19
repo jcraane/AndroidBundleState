@@ -8,6 +8,9 @@ import nl.capaxit.bundlestatelib.state.annotations.BundleState;
 
 import java.util.Random;
 
+/**
+ * Demo/sample activity.
+ */
 public class StateDemoActivity extends BundleStateActivity {
     @BundleState(name = "state_name")
     private String name;
