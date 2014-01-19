@@ -18,6 +18,7 @@ public class StateDemoActivity extends BundleStateActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.state_demo_activity);
 
         findViewById(R.id.random).setOnClickListener(new View.OnClickListener() {
