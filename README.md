@@ -1,7 +1,7 @@
 AndroidBundleState
 ==================
 
-Libarry which provide utilities which makes handling activity/fragment state more easy and transparent.
+Libary which provide utilities which makes handling activity/fragment state more easy and transparent.
 
 The BundleStateLib provides a BundleState annotation and corresponding base activities/fragments which process 
 the BundleState annotation.
@@ -10,15 +10,15 @@ Everyone who creates Android applications comes to a point where the application
 Rotating the device means Android destroys and recreates the current activity. If the state that is present in the activity 
 is not saved correctly, the state is lost and user experience is affected.
 
-The proper way to handle device orientation changes and acivity destroy/resume is by using the Bundle. 
+The proper way to handle device orientation changes and activity destroy/resume is by using the Bundle.
 
 IMPORTANT: Bundle state is GONE when the application crashes or shuts down. To have state survive application
-restarts use another mechanism like preferecens or a SQLite database.
+restarts use another mechanism like preferences or a SQLite database.
 
 Using the Bundle to save and restore state can be cumbersome. You have to implement a couple of lifecycle methods which are duplicated
 in every activity that must save/restore its state.
 
-This project aims to make saving and storing state using the Bundle easy and transparant.
+This project aims to make saving and storing state using the Bundle easy and transparent.
 
 Example:
 
