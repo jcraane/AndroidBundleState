@@ -14,14 +14,14 @@ public class StringFieldProcessor implements BundleStateFieldProcessor {
     @Override
     public void saveState(final BundleState bundleState, final Field field, final Object target, final Bundle outState) throws IllegalAccessException {
         field.setAccessible(true);
-        outState.putString(bundleState.name(), (String) field.get(target));
+        outState.putString(bundleState.value(), (String) field.get(target));
     }
 
     @Override
     public void restoreState(final BundleState bundleState, final Field field, final Object target, final Bundle savedInstanceState) throws IllegalAccessException {
-        if (savedInstanceState.getString(bundleState.name()) != null) {
+        if (savedInstanceState.getString(bundleState.value()) != null) {
             field.setAccessible(true);
-            field.set(target, savedInstanceState.getString(bundleState.name()));
+            field.set(target, savedInstanceState.getString(bundleState.value()));
         }
     }
 }

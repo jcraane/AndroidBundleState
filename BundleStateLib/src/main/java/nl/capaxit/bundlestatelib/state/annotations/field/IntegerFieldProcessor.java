@@ -16,20 +16,20 @@ public class IntegerFieldProcessor implements BundleStateFieldProcessor {
         field.setAccessible(true);
         if (field.getType().isPrimitive()) {
             // primitives can not be null.
-            outState.putInt(bundleState.name(), (Integer) field.get(target));
+            outState.putInt(bundleState.value(), (Integer) field.get(target));
         } else {
             final Integer value = (Integer) field.get(target);
             if (value != null) {
-                outState.putInt(bundleState.name(), value);
+                outState.putInt(bundleState.value(), value);
             }
         }
     }
 
     @Override
     public void restoreState(final BundleState bundleState, final Field field, final Object target, final Bundle savedInstanceState) throws IllegalAccessException {
-        if (savedInstanceState.getString(bundleState.name()) != null) {
+        if (savedInstanceState.getString(bundleState.value()) != null) {
             field.setAccessible(true);
-            field.set(target, savedInstanceState.getInt(bundleState.name()));
+            field.set(target, savedInstanceState.getInt(bundleState.value()));
         }
     }
 }

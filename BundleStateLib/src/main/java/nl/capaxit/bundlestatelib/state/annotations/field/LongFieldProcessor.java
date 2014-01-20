@@ -16,20 +16,20 @@ public class LongFieldProcessor implements BundleStateFieldProcessor {
         field.setAccessible(true);
         if (field.getType().isPrimitive()) {
             // primitives can not be null.
-            outState.putLong(bundleState.name(), (Long) field.get(target));
+            outState.putLong(bundleState.value(), (Long) field.get(target));
         } else {
             final Long value = (Long) field.get(target);
             if (value != null) {
-                outState.putLong(bundleState.name(), value);
+                outState.putLong(bundleState.value(), value);
             }
         }
     }
 
     @Override
     public void restoreState(final BundleState bundleState, final Field field, final Object target, final Bundle savedInstanceState) throws IllegalAccessException {
-        if (savedInstanceState.getString(bundleState.name()) != null) {
+        if (savedInstanceState.getString(bundleState.value()) != null) {
             field.setAccessible(true);
-            field.set(target, savedInstanceState.getLong(bundleState.name()));
+            field.set(target, savedInstanceState.getLong(bundleState.value()));
         }
     }
 }
