@@ -23,6 +23,7 @@ This project aims to make saving and storing state using the Bundle easy and tra
 Example:
 
 ...
+
 public class StateDemoActivity extends BundleStateActivity {
     @BundleState("state_name")
     private String name;
@@ -44,5 +45,6 @@ public class StateDemoActivity extends BundleStateActivity {
         ((TextView) findViewById(R.id.name)).setText(name);
     }
 }
+
 ...
 
