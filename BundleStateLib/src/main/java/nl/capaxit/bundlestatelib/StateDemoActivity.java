@@ -31,5 +31,4 @@ public class StateDemoActivity extends BundleStateActivity {
 
         ((TextView) findViewById(R.id.name)).setText(name);
     }
-
 }

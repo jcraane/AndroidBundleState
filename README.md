@@ -23,7 +23,7 @@ This project aims to make saving and storing state using the Bundle easy and tra
 Example:
 
 public class StateDemoActivity extends BundleStateActivity {
-    @BundleState("state_name") // This field is saved/restored in the Bundle.
+    @BundleState("state_name")
     private String name;
 
     @Override
