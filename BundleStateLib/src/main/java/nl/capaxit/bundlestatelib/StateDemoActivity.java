@@ -12,8 +12,11 @@ import java.util.Random;
  * Demo/sample activity.
  */
 public class StateDemoActivity extends BundleStateActivity {
-    @BundleState("state_name")
+    @BundleState
     private String name;
+
+    @BundleState
+    private int number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +27,13 @@ public class StateDemoActivity extends BundleStateActivity {
         findViewById(R.id.random).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                name = String.valueOf(new Random().nextInt(100));
-                ((TextView) findViewById(R.id.name)).setText(name);
+                final int value = new Random().nextInt(100);
+                number = value;
+                name = String.valueOf(value);
+                ((TextView) findViewById(R.id.name)).setText("" + number + " " + name);
             }
         });
 
-        ((TextView) findViewById(R.id.name)).setText(name);
+        ((TextView) findViewById(R.id.name)).setText("" + number + " " + name);
     }
 }

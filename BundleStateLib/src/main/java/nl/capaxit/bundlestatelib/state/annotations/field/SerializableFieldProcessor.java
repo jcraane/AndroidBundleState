@@ -3,6 +3,7 @@ package nl.capaxit.bundlestatelib.state.annotations.field;
 import android.os.Bundle;
 import nl.capaxit.bundlestatelib.state.annotations.BundleState;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 
 /**
@@ -10,26 +11,18 @@ import java.lang.reflect.Field;
  *
  * @author jcraane
  */
-public class IntegerFieldProcessor implements BundleStateFieldProcessor {
+public class SerializableFieldProcessor implements BundleStateFieldProcessor {
     @Override
     public void saveState(final BundleState bundleState, final Field field, final Object target, final Bundle outState) throws IllegalAccessException {
         field.setAccessible(true);
-        if (field.getType().isPrimitive()) {
-            // primitives can not be null.
-            outState.putInt(bundleState.value(), (Integer) field.get(target));
-        } else {
-            final Integer value = (Integer) field.get(target);
-            if (value != null) {
-                outState.putInt(bundleState.value(), value);
-            }
-        }
+        outState.putSerializable(FieldNameFactory.getFieldName(bundleState, field), (Serializable) field.get(target));
     }
 
     @Override
     public void restoreState(final BundleState bundleState, final Field field, final Object target, final Bundle savedInstanceState) throws IllegalAccessException {
-        if (savedInstanceState.getString(bundleState.value()) != null) {
+        if (savedInstanceState.getSerializable(FieldNameFactory.getFieldName(bundleState, field)) != null) {
             field.setAccessible(true);
-            field.set(target, savedInstanceState.getInt(bundleState.value()));
+            field.set(target, savedInstanceState.getSerializable(FieldNameFactory.getFieldName(bundleState, field)));
         }
     }
 }

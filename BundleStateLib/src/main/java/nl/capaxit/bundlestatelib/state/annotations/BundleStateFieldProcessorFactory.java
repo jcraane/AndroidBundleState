@@ -1,9 +1,7 @@
 package nl.capaxit.bundlestatelib.state.annotations;
 
 import nl.capaxit.bundlestatelib.state.annotations.field.BundleStateFieldProcessor;
-import nl.capaxit.bundlestatelib.state.annotations.field.IntegerFieldProcessor;
-import nl.capaxit.bundlestatelib.state.annotations.field.LongFieldProcessor;
-import nl.capaxit.bundlestatelib.state.annotations.field.StringFieldProcessor;
+import nl.capaxit.bundlestatelib.state.annotations.field.SerializableFieldProcessor;
 
 import java.lang.reflect.Field;
 
@@ -15,11 +13,13 @@ import java.lang.reflect.Field;
  * @author jcraane
  */
 public final class BundleStateFieldProcessorFactory {
+    private static final BundleStateFieldProcessor FIELD_PROCESSOR = new SerializableFieldProcessor();
     private BundleStateFieldProcessorFactory() {
     }
 
     public static BundleStateFieldProcessor getProcessor(final Field field) {
-        if (field.getType().isAssignableFrom(String.class)) {
+        return FIELD_PROCESSOR;
+        /*if (field.getType().isAssignableFrom(String.class)) {
             return new StringFieldProcessor();
         }
 
@@ -31,8 +31,8 @@ public final class BundleStateFieldProcessorFactory {
         if (field.getType().isAssignableFrom(long.class)
             || field.getType().isAssignableFrom(Long.class)) {
             return new LongFieldProcessor();
-        }
+        }*/
 
-        throw new IllegalArgumentException("field cannot be saved/restored to/from a Bundle.");
+//        throw new IllegalArgumentException("field cannot be saved/restored to/from a Bundle.");
     }
 }

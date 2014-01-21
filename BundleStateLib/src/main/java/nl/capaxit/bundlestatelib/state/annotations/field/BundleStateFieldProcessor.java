@@ -8,6 +8,8 @@ import java.lang.reflect.Field;
 /**
  * BundleState annotation processor for a specific field.
  *
+ * TODO: Can we get away with a serializable. Look at Android source code for Bundle.
+ *
  * @author jcraane
  */
 public interface BundleStateFieldProcessor {
