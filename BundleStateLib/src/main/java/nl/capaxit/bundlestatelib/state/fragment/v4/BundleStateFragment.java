@@ -1,23 +1,23 @@
-package nl.capaxit.bundlestatelib.state.fragment;
+package nl.capaxit.bundlestatelib.state.fragment.v4;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import nl.capaxit.bundlestatelib.state.annotations.BundleStateAnnotationProcessor;
 
 /**
- * FragmentActivity which saves/restores state using the BundleState annotation.
+ * Insert documentation here.
  *
  * @author jcraane
  */
-public class BundleStateFragmentActivity extends FragmentActivity {
+public class BundleStateFragment extends Fragment {
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BundleStateAnnotationProcessor.restoreStateIfPresent(this, savedInstanceState);
     }
 
     @Override
-    protected void onSaveInstanceState(final Bundle outState) {
+    public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
         BundleStateAnnotationProcessor.saveState(this, outState);
     }

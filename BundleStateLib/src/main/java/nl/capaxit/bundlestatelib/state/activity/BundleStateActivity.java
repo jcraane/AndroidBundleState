@@ -7,8 +7,6 @@ import nl.capaxit.bundlestatelib.state.annotations.BundleStateAnnotationProcesso
 /**
  * Activity which enables the saving and restoring of fields annotated with the BundleState annotation to the Bundle.
  *
- * TODO: Add callback to indicate state is restored.
- *
  * @author jcraane
  */
 public class BundleStateActivity extends Activity{
