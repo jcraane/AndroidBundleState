@@ -15,14 +15,14 @@ public class SerializableFieldProcessor implements BundleStateFieldProcessor {
     @Override
     public void saveState(final BundleState bundleState, final Field field, final Object target, final Bundle outState) throws IllegalAccessException {
         field.setAccessible(true);
-        outState.putSerializable(FieldNameFactory.getFieldName(bundleState, field), (Serializable) field.get(target));
+        outState.putSerializable(FieldNameFactory.getFieldStateName(bundleState, field), (Serializable) field.get(target));
     }
 
     @Override
     public void restoreState(final BundleState bundleState, final Field field, final Object target, final Bundle savedInstanceState) throws IllegalAccessException {
-        if (savedInstanceState.getSerializable(FieldNameFactory.getFieldName(bundleState, field)) != null) {
+        if (savedInstanceState.getSerializable(FieldNameFactory.getFieldStateName(bundleState, field)) != null) {
             field.setAccessible(true);
-            field.set(target, savedInstanceState.getSerializable(FieldNameFactory.getFieldName(bundleState, field)));
+            field.set(target, savedInstanceState.getSerializable(FieldNameFactory.getFieldStateName(bundleState, field)));
         }
     }
 }

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import nl.capaxit.bundlestatelib.state.annotations.BundleStateAnnotationProcessor;
 
 /**
- * Activity which enables the saving and restoring of fields annotated with the BundleState annotation to the Bundle.
+ * BundleState annotation enabled {@link android.app.Activity}.
  *
  * @author jcraane
  */

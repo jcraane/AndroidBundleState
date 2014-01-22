@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import nl.capaxit.bundlestatelib.state.annotations.BundleStateAnnotationProcessor;
 
 /**
- * FragmentActivity which saves/restores state using the BundleState annotation.
+ * BundleState annotation enabled {@link android.support.v4.app.FragmentActivity}
  *
  * @author jcraane
  */

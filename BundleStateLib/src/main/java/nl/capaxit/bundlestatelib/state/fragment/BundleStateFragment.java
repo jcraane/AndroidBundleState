@@ -7,7 +7,7 @@ import android.os.Bundle;
 import nl.capaxit.bundlestatelib.state.annotations.BundleStateAnnotationProcessor;
 
 /**
- * Insert documentation here.
+ * BundleState annotation enabled {@link android.app.Fragment}.
  *
  * @author jcraane
  */

@@ -14,25 +14,11 @@ import java.lang.reflect.Field;
  */
 public final class BundleStateFieldProcessorFactory {
     private static final BundleStateFieldProcessor FIELD_PROCESSOR = new SerializableFieldProcessor();
+
     private BundleStateFieldProcessorFactory() {
     }
 
     public static BundleStateFieldProcessor getProcessor(final Field field) {
         return FIELD_PROCESSOR;
-        /*if (field.getType().isAssignableFrom(String.class)) {
-            return new StringFieldProcessor();
-        }
-
-        if (field.getType().isAssignableFrom(int.class)
-            || field.getType().isAssignableFrom(Integer.class)) {
-            return new IntegerFieldProcessor();
-        }
-
-        if (field.getType().isAssignableFrom(long.class)
-            || field.getType().isAssignableFrom(Long.class)) {
-            return new LongFieldProcessor();
-        }*/
-
-//        throw new IllegalArgumentException("field cannot be saved/restored to/from a Bundle.");
     }
 }

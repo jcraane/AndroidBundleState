@@ -8,9 +8,14 @@ import java.lang.annotation.Target;
 
 /**
  * When a field is annotation with the BundleState annotation, the field is stored/retrieved from the Bundle if the activity extends
- * the proper superclass. For activities this is the BundleStateActivity or a subclass of it.
+ * the proper superclass. For activities this is the {@link nl.capaxit.bundlestatelib.state.activity.BundleStateActivity} or a subclass of it.
  *
- * For fragments this is the TODO.
+ * The other classes which support the BundleState annotation are:
+ * <ul>
+ *     <li>{@link nl.capaxit.bundlestatelib.state.fragment.BundleStateFragment} </li>
+ *     <li>{@link nl.capaxit.bundlestatelib.state.fragment.v4.BundleStateFragment} </li>
+ *     <li>{@link nl.capaxit.bundlestatelib.state.fragment.BundleStateFragmentActivity} </li>
+ * </ul>
  *
  * @author jcraane
  */
@@ -18,5 +23,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface BundleState {
+    /**
+     * (Optional) The name of the key to save/restore field state.
+     * @return The name of the key to save/restore field state.
+     */
     String name() default "";
 }
