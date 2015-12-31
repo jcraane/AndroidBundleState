@@ -2,10 +2,12 @@ package nl.capaxit.bundlestatelib.state.annotations.field;
 
 import android.os.Bundle;
 import android.util.Log;
-import nl.capaxit.bundlestatelib.state.annotations.BundleState;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+
+import nl.capaxit.bundlestatelib.state.annotations.ArgumentState;
+import nl.capaxit.bundlestatelib.state.annotations.BundleState;
 
 /**
  * BundleStateFieldProcessor for String types.
@@ -24,6 +26,15 @@ public class SerializableFieldProcessor implements BundleStateFieldProcessor {
     }
 
     @Override
+    public void saveState(final ArgumentState argumentState, final Field field, final Object target, final Bundle outState) throws IllegalAccessException {
+        field.setAccessible(true);
+        if (outState != null) {
+            Log.i(TAG, "outState is null, not saving any state.");
+            outState.putSerializable(FieldNameFactory.getFieldStateName(argumentState, field), (Serializable) field.get(target));
+        }
+    }
+
+    @Override
     public void restoreState(final BundleState bundleState, final Field field, final Object target, final Bundle savedInstanceState) throws IllegalAccessException {
         if (savedInstanceState == null) {
             Log.i(TAG, "savedInstanceState is null, not restoring any state.");
@@ -33,6 +44,19 @@ public class SerializableFieldProcessor implements BundleStateFieldProcessor {
         if (savedInstanceState.getSerializable(FieldNameFactory.getFieldStateName(bundleState, field)) != null) {
             field.setAccessible(true);
             field.set(target, savedInstanceState.getSerializable(FieldNameFactory.getFieldStateName(bundleState, field)));
+        }
+    }
+
+    @Override
+    public void restoreState(final ArgumentState argumentState, final Field field, final Object target, final Bundle savedInstanceState) throws IllegalAccessException {
+        if (savedInstanceState == null) {
+            Log.i(TAG, "savedInstanceState is null, not restoring any state.");
+            return;
+        }
+
+        if (savedInstanceState.getSerializable(FieldNameFactory.getFieldStateName(argumentState, field)) != null) {
+            field.setAccessible(true);
+            field.set(target, savedInstanceState.getSerializable(FieldNameFactory.getFieldStateName(argumentState, field)));
         }
     }
 }

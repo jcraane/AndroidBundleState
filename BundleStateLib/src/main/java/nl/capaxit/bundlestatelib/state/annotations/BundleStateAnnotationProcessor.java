@@ -2,9 +2,10 @@ package nl.capaxit.bundlestatelib.state.annotations;
 
 import android.os.Bundle;
 import android.util.Log;
-import nl.capaxit.bundlestatelib.state.annotations.field.BundleStateFieldProcessor;
 
 import java.lang.reflect.Field;
+
+import nl.capaxit.bundlestatelib.state.annotations.field.BundleStateFieldProcessor;
 
 /**
  * Processor for the BundleState annotation. Delegates to BundleStateFieldProcessor instances for specific
@@ -19,12 +20,12 @@ public final class BundleStateAnnotationProcessor {
     }
 
     public static void restoreStateIfPresent(final Object target, final Bundle savedInstanceState, final Bundle arguments) {
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null || arguments != null) {
             try {
                 final Field[] fields = target.getClass().getDeclaredFields();
                 for (final Field field : fields) {
-                    if (field.isAnnotationPresent(BundleState.class)) {
-                        restoreState(target, savedInstanceState, field);
+                    if (field.isAnnotationPresent(BundleState.class) && savedInstanceState != null) {
+                        restoreBundleState(target, savedInstanceState, field);
                     }
 
                     if (field.isAnnotationPresent(ArgumentState.class) && arguments == null) {
@@ -32,7 +33,7 @@ public final class BundleStateAnnotationProcessor {
                     }
 
                     if (field.isAnnotationPresent(ArgumentState.class) && arguments != null) {
-                        restoreState(target, arguments, field);
+                        restoreArgumentState(target, arguments, field);
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -41,10 +42,16 @@ public final class BundleStateAnnotationProcessor {
         }
     }
 
-    private static void restoreState(final Object target, final Bundle savedInstanceState, final Field field) throws IllegalAccessException {
+    private static void restoreBundleState(final Object target, final Bundle savedInstanceState, final Field field) throws IllegalAccessException {
         final BundleState bundleState = field.getAnnotation(BundleState.class);
         final BundleStateFieldProcessor processor = BundleStateFieldProcessorFactory.getProcessor(field);
         processor.restoreState(bundleState, field, target, savedInstanceState);
+    }
+
+    private static void restoreArgumentState(final Object target, final Bundle savedInstanceState, final Field field) throws IllegalAccessException {
+        final ArgumentState argumentState = field.getAnnotation(ArgumentState.class);
+        final BundleStateFieldProcessor processor = BundleStateFieldProcessorFactory.getProcessor(field);
+        processor.restoreState(argumentState, field, target, savedInstanceState);
     }
 
     public static void saveState(final Object target, final Bundle outState, final Bundle arguments) {
@@ -52,7 +59,7 @@ public final class BundleStateAnnotationProcessor {
             final Field[] fields = target.getClass().getDeclaredFields();
             for (final Field field : fields) {
                 if (field.isAnnotationPresent(BundleState.class)) {
-                    saveStateUsingBundleStateAnnotation(target, outState, field);
+                    saveBundleState(target, outState, field);
                 }
 
                 if (field.isAnnotationPresent(ArgumentState.class) && arguments == null) {
@@ -60,7 +67,7 @@ public final class BundleStateAnnotationProcessor {
                 }
 
                 if (field.isAnnotationPresent(ArgumentState.class) && arguments != null) {
-                    saveStateUsingBundleStateAnnotation(target, arguments, field);
+                    saveArgumentState(target, arguments, field);
                 }
             }
         } catch (IllegalAccessException e) {
@@ -69,9 +76,15 @@ public final class BundleStateAnnotationProcessor {
 
     }
 
-    private static void saveStateUsingBundleStateAnnotation(final Object target, final Bundle outState, final Field field) throws IllegalAccessException {
+    private static void saveBundleState(final Object target, final Bundle outState, final Field field) throws IllegalAccessException {
         final BundleState bundleState = field.getAnnotation(BundleState.class);
         final BundleStateFieldProcessor processor = BundleStateFieldProcessorFactory.getProcessor(field);
         processor.saveState(bundleState, field, target, outState);
+    }
+
+    private static void saveArgumentState(final Object target, final Bundle outState, final Field field) throws IllegalAccessException {
+        final ArgumentState argumentState = field.getAnnotation(ArgumentState.class);
+        final BundleStateFieldProcessor processor = BundleStateFieldProcessorFactory.getProcessor(field);
+        processor.saveState(argumentState, field, target, outState);
     }
 }
