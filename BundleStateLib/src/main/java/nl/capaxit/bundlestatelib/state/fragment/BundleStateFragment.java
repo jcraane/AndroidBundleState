@@ -16,12 +16,13 @@ public class BundleStateFragment extends Fragment {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BundleStateAnnotationProcessor.restoreStateIfPresent(this, savedInstanceState);
+        BundleStateAnnotationProcessor.restoreStateIfPresent(this, savedInstanceState, getArguments());
+
     }
 
     @Override
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
-        BundleStateAnnotationProcessor.saveState(this, outState);
+        BundleStateAnnotationProcessor.saveState(this, outState, getArguments());
     }
 }
