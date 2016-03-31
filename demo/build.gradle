@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
+    compileSdkVersion 23
     buildToolsVersion "20.0.0"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 20
+        targetSdkVersion 23
     }
     buildTypes {
         release {
@@ -19,4 +19,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(":BundleStateLib")
+    compile "com.android.support:support-v4:23.2.0"
 }

@@ -17,4 +17,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Get Random Value"/>
+
+    <Button
+        android:id="@+id/toSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To Second"/>
+
+    <TextView
+        android:id="@+id/intentData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TestData"/>
     </LinearLayout>

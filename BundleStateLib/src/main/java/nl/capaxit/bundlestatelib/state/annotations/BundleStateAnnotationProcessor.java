@@ -6,6 +6,8 @@ import android.util.Log;
 import java.lang.reflect.Field;
 
 import nl.capaxit.bundlestatelib.state.annotations.field.BundleStateFieldProcessor;
+import nl.capaxit.bundlestatelib.state.intent.IntentProcessor;
+import nl.capaxit.bundlestatelib.state.intent.provider.IntentProviderFactory;
 
 /**
  * Processor for the BundleState annotation. Delegates to BundleStateFieldProcessor instances for specific
@@ -20,9 +22,9 @@ public final class BundleStateAnnotationProcessor {
     }
 
     public static void restoreStateIfPresent(final Object target, final Bundle savedInstanceState, final Bundle arguments) {
+        final Field[] fields = target.getClass().getDeclaredFields();
         if (savedInstanceState != null || arguments != null) {
             try {
-                final Field[] fields = target.getClass().getDeclaredFields();
                 for (final Field field : fields) {
                     if (field.isAnnotationPresent(BundleState.class) && savedInstanceState != null) {
                         restoreBundleState(target, savedInstanceState, field);
@@ -38,6 +40,16 @@ public final class BundleStateAnnotationProcessor {
                 }
             } catch (IllegalAccessException e) {
                 Log.e(TAG, "Could not restore bundle state, see the exception for details.", e);
+            }
+        }
+
+        processIntentAnnotations(target, fields);
+    }
+
+    private static void processIntentAnnotations(final Object target, final Field[] fields) {
+        for (final Field field : fields) {
+            if (field.isAnnotationPresent(IntentData.class)) {
+                IntentProcessor.processIntentAnnotation(IntentProviderFactory.create(target), field);
             }
         }
     }

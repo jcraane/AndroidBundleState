@@ -2,7 +2,6 @@
 
     <application android:allowBackup="true" android:label="@string/app_name"
         android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme">
-<!--
         <activity
             android:name="nl.capaxit.bundlestate.demo.StateDemoActivity"
             android:label="@string/app_name" >
@@ -12,8 +11,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
--->
 
+<!--
         <activity
             android:name="nl.capaxit.bundlestate.demo.StateDemoFragmentActivity"
             android:label="@string/app_name" >
@@ -23,7 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+-->
 
+        <activity android:name=".second.SecondActivity"
+            android:label="Second"/>
     </application>
 
 </manifest>

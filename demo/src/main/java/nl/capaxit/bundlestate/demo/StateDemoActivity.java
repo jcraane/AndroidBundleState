@@ -1,11 +1,13 @@
 package nl.capaxit.bundlestate.demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import java.util.Random;
 
+import nl.capaxit.bundlestate.demo.second.SecondActivity;
 import nl.capaxit.bundlestatelib.state.activity.BundleStateActivity;
 import nl.capaxit.bundlestatelib.state.annotations.BundleState;
 
@@ -36,5 +38,18 @@ public class StateDemoActivity extends BundleStateActivity {
         });
 
         ((TextView) findViewById(R.id.name)).setText("" + number + " " + name);
+
+        findViewById(R.id.toSecond).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                navigateToSecond();
+            }
+        });
+    }
+
+    private void navigateToSecond() {
+        final Intent intent = new Intent(this, SecondActivity.class);
+        intent.putExtra(SecondActivity.INTENT_DATA, ((TextView) findViewById(R.id.intentData)).getText());
+        startActivity(intent);
     }
 }
