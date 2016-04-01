@@ -23,7 +23,6 @@ restarts use another mechanism like preferences or a SQLite database.
 Example:
 
 ```
-
 public class StateDemoActivity extends BundleStateActivity {
     @BundleState("state_name") // The name is optional. If no name is present, the name of the field variable is used.
     private String name;
@@ -48,3 +47,14 @@ public class StateDemoActivity extends BundleStateActivity {
 
 ```
 
+# Intents
+
+The bundle state library also supports getting values from intent extra. See the following example:
+
+```
+@IntentExtra(name = INTENT_STRING_DEFAULT, defaultValue = "Hello World")
+private String stringWithDefault;
+```
+
+The value of the stringWithDefault field is available in the onCreate of an Activity of onActivityCreated
+in a fragment. If no value is passed via the intent extras, the field is initialized to Hello World.

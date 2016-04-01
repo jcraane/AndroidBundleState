@@ -24,7 +24,7 @@ public class SecondActivity extends BundleStateActivity {
     @IntentExtra(name = INTENT_STRING_VALUE, required = true)
     private String stringValue;
 
-    @IntentExtra(name = INTENT_STRING_DEFAULT, defaultValue = "StandaardWaarde")
+    @IntentExtra(name = INTENT_STRING_DEFAULT, defaultValue = "defaultValue")
     private String stringWithDefault;
 
     @IntentExtra(name = INTENT_INTEGER)
@@ -39,6 +39,7 @@ public class SecondActivity extends BundleStateActivity {
 //    @IntentData(name = INTENT_BOOLEAN_DEFAULT, defaultValue = "true")
     private boolean booleanValueDefault;
 
+//    @IntentExtra(name = INTENT_OBJECT)
     private PersonData objectValue;
 
     @Override
