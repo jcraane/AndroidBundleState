@@ -15,6 +15,11 @@ import nl.capaxit.bundlestatelib.state.annotations.IntentData;
 public class SecondActivity extends BundleStateActivity {
     public static final String INTENT_STRING_VALUE = "intent:stringValue";
     public static final String INTENT_STRING_DEFAULT = "intent:stringValueDefault";
+    public static final String INTENT_INTEGER = "intent:integerValue";
+    public static final String INTENT_INTEGER_DEFAULT = "intent:integerValueDefault";
+    public static final String INTENT_BOOLEAN = "intent:booleanValue";
+    public static final String INTENT_BOOLEAN_DEFAULT = "intent:booleanValueDefault";
+    public static final String INTENT_OBJECT = "intent:objectValue";
 
     @IntentData(name = INTENT_STRING_VALUE, required = true)
     private String stringValue;
@@ -22,11 +27,19 @@ public class SecondActivity extends BundleStateActivity {
     @IntentData(name = INTENT_STRING_DEFAULT, defaultValue = "StandaardWaarde")
     private String stringWithDefault;
 
+    @IntentData(name = INTENT_INTEGER)
     private int intValue;
 
-    private PersonData objectValue;
+    @IntentData(name = INTENT_INTEGER_DEFAULT, defaultValue = "10")
+    private int intValueDefault;
 
+//    @IntentData(name = INTENT_BOOLEAN)
     private boolean booleanValue;
+
+//    @IntentData(name = INTENT_BOOLEAN_DEFAULT, defaultValue = "true")
+    private boolean booleanValueDefault;
+
+    private PersonData objectValue;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -35,8 +48,10 @@ public class SecondActivity extends BundleStateActivity {
         final String values = new StringBuilder("stringValue = ").append(stringValue).append("\n")
                 .append("stringWithDefault = ").append(stringWithDefault).append("\n")
                 .append("intValue = ").append(intValue).append("\n")
-                .append("objectValue = ").append(objectValue).append("\n")
-                .append("booleanValue = ").append(booleanValue).toString();
+                .append("intValueDefault = ").append(intValueDefault).append("\n")
+                .append("booleanValue = ").append(booleanValue)
+                .append("booleanValueDefault = ").append(booleanValueDefault)
+                .append("objectValue = ").append(objectValue).append("\n").toString();
         ((TextView) findViewById(R.id.intentData)).setText(values);
     }
 
