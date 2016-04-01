@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 import nl.capaxit.bundlestate.demo.R;
 import nl.capaxit.bundlestatelib.state.activity.BundleStateActivity;
-import nl.capaxit.bundlestatelib.state.annotations.IntentData;
+import nl.capaxit.bundlestatelib.state.annotations.IntentExtra;
 
 /**
  * Created by jamiecraane on 30/03/16.
@@ -21,16 +21,16 @@ public class SecondActivity extends BundleStateActivity {
     public static final String INTENT_BOOLEAN_DEFAULT = "intent:booleanValueDefault";
     public static final String INTENT_OBJECT = "intent:objectValue";
 
-    @IntentData(name = INTENT_STRING_VALUE, required = true)
+    @IntentExtra(name = INTENT_STRING_VALUE, required = true)
     private String stringValue;
 
-    @IntentData(name = INTENT_STRING_DEFAULT, defaultValue = "StandaardWaarde")
+    @IntentExtra(name = INTENT_STRING_DEFAULT, defaultValue = "StandaardWaarde")
     private String stringWithDefault;
 
-    @IntentData(name = INTENT_INTEGER)
+    @IntentExtra(name = INTENT_INTEGER)
     private int intValue;
 
-    @IntentData(name = INTENT_INTEGER_DEFAULT, defaultValue = "10")
+    @IntentExtra(name = INTENT_INTEGER_DEFAULT, defaultValue = "10")
     private int intValueDefault;
 
 //    @IntentData(name = INTENT_BOOLEAN)

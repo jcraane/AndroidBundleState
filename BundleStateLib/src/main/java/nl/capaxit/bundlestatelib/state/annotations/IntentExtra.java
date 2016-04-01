@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface IntentData {
+public @interface IntentExtra {
     /**
      * The name of the intent-key to save/restore field state.
      * @return The name of the key to save/restore field state.

@@ -48,7 +48,7 @@ public final class BundleStateAnnotationProcessor {
 
     private static void processIntentAnnotations(final Object target, final Field[] fields) {
         for (final Field field : fields) {
-            if (field.isAnnotationPresent(IntentData.class)) {
+            if (field.isAnnotationPresent(IntentExtra.class)) {
                 IntentProcessor.processIntentAnnotation(IntentProviderFactory.create(target), field);
             }
         }

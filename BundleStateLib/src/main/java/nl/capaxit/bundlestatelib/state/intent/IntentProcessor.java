@@ -2,9 +2,9 @@ package nl.capaxit.bundlestatelib.state.intent;
 
 import java.lang.reflect.Field;
 
-import nl.capaxit.bundlestatelib.state.annotations.IntentData;
-import nl.capaxit.bundlestatelib.state.annotations.intent.IntentFieldProcessor;
-import nl.capaxit.bundlestatelib.state.annotations.intent.IntentFieldProcessorFactory;
+import nl.capaxit.bundlestatelib.state.annotations.IntentExtra;
+import nl.capaxit.bundlestatelib.state.annotations.intent.ExtraFieldProcessor;
+import nl.capaxit.bundlestatelib.state.annotations.intent.ExtraFieldProcessorFactory;
 import nl.capaxit.bundlestatelib.state.intent.provider.IntentProvider;
 
 /**
@@ -12,8 +12,8 @@ import nl.capaxit.bundlestatelib.state.intent.provider.IntentProvider;
  */
 public class IntentProcessor {
     public static void processIntentAnnotation(final IntentProvider intentProvider, final Field field) {
-        final IntentData intentData = field.getAnnotation(IntentData.class);
-        final IntentFieldProcessor fieldProcesor = IntentFieldProcessorFactory.getFieldProcesor(field);
-        fieldProcesor.process(intentProvider, intentData, field);
+        final IntentExtra intentExtra = field.getAnnotation(IntentExtra.class);
+        final ExtraFieldProcessor fieldProcesor = ExtraFieldProcessorFactory.getFieldProcesor(field);
+        fieldProcesor.process(intentProvider, intentExtra, field);
     }
 }
