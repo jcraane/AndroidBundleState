@@ -17,10 +17,10 @@ public abstract class BaseIntentFieldProcessor implements IntentFieldProcessor {
             throw new IllegalArgumentException(String.format("Intent data %s is marked as required but not present.", intentData.name()));
         }
 
-        doProcess(intentProvider.getTarget(), value, field);
+        doProcess(intentProvider.getTarget(), value, field, intentData);
     }
 
-    public abstract void doProcess(Object target, String value, Field field);
+    public abstract void doProcess(Object target, String value, Field field, IntentData intentData);
 
     private boolean isRequiredValueNotPresentAndNoDefault(final IntentData intentData, final String value) {
         return StringUtil.isNullOrEmpty(value) && intentData.required() && StringUtil.isNullOrEmpty(intentData.defaultValue());

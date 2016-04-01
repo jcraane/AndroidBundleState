@@ -9,7 +9,7 @@ version = versionName
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "19.1.0"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         minSdkVersion 14
@@ -30,6 +30,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.2.0'
-    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.android.support:appcompat-v7:23.2.1'
 }
