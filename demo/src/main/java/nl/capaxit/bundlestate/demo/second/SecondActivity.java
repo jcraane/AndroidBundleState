@@ -6,13 +6,13 @@ import android.widget.TextView;
 import java.io.Serializable;
 
 import nl.capaxit.bundlestate.demo.R;
-import nl.capaxit.bundlestatelib.state.activity.BundleStateActivity;
 import nl.capaxit.bundlestatelib.state.annotations.IntentExtra;
+import nl.capaxit.bundlestatelib.state.fragment.BundleStateFragmentActivity;
 
 /**
  * Created by jamiecraane on 30/03/16.
  */
-public class SecondActivity extends BundleStateActivity {
+public class SecondActivity extends BundleStateFragmentActivity {
     public static final String INTENT_STRING_VALUE = "intent:stringValue";
     public static final String INTENT_STRING_DEFAULT = "intent:stringValueDefault";
     public static final String INTENT_INTEGER = "intent:integerValue";

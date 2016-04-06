@@ -6,7 +6,8 @@ import android.content.Intent;
 /**
  * Created by jamiecraane on 31/03/16.
  */
-public class ActivityIntentProvider implements IntentProvider {
+public class
+ActivityIntentProvider implements IntentProvider {
     private final Activity target;
 
     public ActivityIntentProvider(final Activity target) {
