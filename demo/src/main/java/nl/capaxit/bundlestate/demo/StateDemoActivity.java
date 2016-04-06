@@ -51,6 +51,7 @@ public class StateDemoActivity extends BundleStateActivity {
         final Intent intent = new Intent(this, SecondActivity.class);
         intent.putExtra(SecondActivity.INTENT_STRING_VALUE, "Hallo");
         intent.putExtra(SecondActivity.INTENT_INTEGER, 15);
+        intent.putExtra(SecondActivity.INTENT_LONG, 5000L);
         startActivity(intent);
     }
 }

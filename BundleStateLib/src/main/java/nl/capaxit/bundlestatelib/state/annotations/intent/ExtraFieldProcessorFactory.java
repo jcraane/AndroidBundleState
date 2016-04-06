@@ -8,10 +8,22 @@ import java.lang.reflect.Field;
 public class ExtraFieldProcessorFactory {
     public static ExtraFieldProcessor getFieldProcesor(final Field field) {
         final Class<?> type = field.getType();
-        if (type == int.class) {
+        if (isInt(type)) {
             return new IntExtraFieldProcessor();
         }
 
+        if (isLong(type)) {
+            return new LongExtraFieldProcessor();
+        }
+
         return new SerializableExtraFieldProcessor();
+    }
+
+    private static boolean isLong(final Class<?> type) {
+        return type == long.class || type == Long.class;
+    }
+
+    private static boolean isInt(final Class<?> type) {
+        return type == int.class || type == Integer.class;
     }
 }
