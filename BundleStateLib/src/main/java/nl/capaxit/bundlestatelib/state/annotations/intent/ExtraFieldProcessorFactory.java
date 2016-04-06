@@ -16,7 +16,15 @@ public class ExtraFieldProcessorFactory {
             return new LongExtraFieldProcessor();
         }
 
+        if (isBoolean(type)) {
+            return new BooleanExtraFieldProcessor();
+        }
+
         return new SerializableExtraFieldProcessor();
+    }
+
+    private static boolean isBoolean(final Class<?> type) {
+        return type == boolean.class || type == Boolean.class;
     }
 
     private static boolean isLong(final Class<?> type) {

@@ -52,6 +52,8 @@ public class StateDemoActivity extends BundleStateActivity {
         intent.putExtra(SecondActivity.INTENT_STRING_VALUE, "Hallo");
         intent.putExtra(SecondActivity.INTENT_INTEGER, 15);
         intent.putExtra(SecondActivity.INTENT_LONG, 5000L);
+        intent.putExtra(SecondActivity.INTENT_BOOLEAN, true);
+        intent.putExtra(SecondActivity.INTENT_OBJECT, new SecondActivity.PersonData("John", "Smith"));
         startActivity(intent);
     }
 }

@@ -41,13 +41,13 @@ public class SecondActivity extends BundleStateActivity {
     @IntentExtra(name = INTENT_LONG_DEFAULT, defaultValue = "10000")
     private long longDefaultValue;
 
-//    @IntentData(name = INTENT_BOOLEAN)
+    @IntentExtra(name = INTENT_BOOLEAN)
     private boolean booleanValue;
 
-//    @IntentData(name = INTENT_BOOLEAN_DEFAULT, defaultValue = "true")
+    @IntentExtra(name = INTENT_BOOLEAN_DEFAULT, defaultValue = "true")
     private boolean booleanValueDefault;
 
-//    @IntentExtra(name = INTENT_OBJECT)
+    @IntentExtra(name = INTENT_OBJECT)
     private PersonData objectValue;
 
     @Override
@@ -60,7 +60,7 @@ public class SecondActivity extends BundleStateActivity {
                 .append("intValueDefault = ").append(intValueDefault).append("\n")
                 .append("longValue = ").append(longValue).append("\n")
                 .append("longValueDefault = ").append(longDefaultValue).append("\n")
-                .append("booleanValue = ").append(booleanValue)
+                .append("booleanValue = ").append(booleanValue).append("\n")
                 .append("booleanValueDefault = ").append(booleanValueDefault)
                 .append("objectValue = ").append(objectValue).append("\n").toString();
         ((TextView) findViewById(R.id.intentData)).setText(values);
