@@ -42,7 +42,10 @@ public final class BundleStateAnnotationProcessor {
                 Log.e(TAG, "Could not restore bundle state, see the exception for details.", e);
             }
         }
+    }
 
+    public static void processIntentExtras(final Object target) {
+        final Field[] fields = target.getClass().getDeclaredFields();
         processIntentAnnotations(target, fields);
     }
 

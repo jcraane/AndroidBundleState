@@ -14,6 +14,7 @@ public class BundleStateActivity extends Activity{
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BundleStateAnnotationProcessor.restoreStateIfPresent(this, savedInstanceState, null);
+        BundleStateAnnotationProcessor.processIntentExtras(this);
     }
 
     @Override
