@@ -22,4 +22,9 @@ public class ActivityIntentProvider implements IntentProvider {
     public Object getTarget() {
         return target;
     }
+
+    @Override
+    public boolean containsKey(final String key) {
+        return target.getIntent().getExtras().containsKey(key);
+    }
 }

@@ -9,4 +9,6 @@ public interface IntentProvider {
     Intent getIntent();
 
     Object getTarget();
+
+    boolean containsKey(final String key);
 }

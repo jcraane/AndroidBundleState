@@ -22,4 +22,9 @@ public class FragmentActivityIntentProvider implements IntentProvider {
     public Object getTarget() {
         return fragmentActivity;
     }
+
+    @Override
+    public boolean containsKey(final String key) {
+        return fragmentActivity.getIntent().getExtras().containsKey(key);
+    }
 }

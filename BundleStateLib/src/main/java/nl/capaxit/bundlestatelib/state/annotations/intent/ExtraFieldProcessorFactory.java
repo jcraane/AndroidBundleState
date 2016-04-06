@@ -8,6 +8,10 @@ import java.lang.reflect.Field;
 public class ExtraFieldProcessorFactory {
     public static ExtraFieldProcessor getFieldProcesor(final Field field) {
         final Class<?> type = field.getType();
+        if (type == int.class) {
+            return new IntExtraFieldProcessor();
+        }
+
         return new SerializableExtraFieldProcessor();
     }
 }

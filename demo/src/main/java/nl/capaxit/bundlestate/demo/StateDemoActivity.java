@@ -49,7 +49,8 @@ public class StateDemoActivity extends BundleStateActivity {
 
     private void navigateToSecond() {
         final Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra(SecondActivity.INTENT_STRING_VALUE, ((TextView) findViewById(R.id.intentData)).getText());
+        intent.putExtra(SecondActivity.INTENT_STRING_VALUE, "Hallo");
+        intent.putExtra(SecondActivity.INTENT_INTEGER, 15);
         startActivity(intent);
     }
 }
