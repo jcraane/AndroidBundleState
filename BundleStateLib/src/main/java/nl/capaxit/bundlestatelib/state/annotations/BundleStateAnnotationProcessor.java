@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 
 import nl.capaxit.bundlestatelib.state.annotations.field.BundleStateFieldProcessor;
 import nl.capaxit.bundlestatelib.state.intent.IntentProcessor;
+import nl.capaxit.bundlestatelib.state.intent.provider.IntentProvider;
 import nl.capaxit.bundlestatelib.state.intent.provider.IntentProviderFactory;
 
 /**
@@ -52,7 +53,10 @@ public final class BundleStateAnnotationProcessor {
     private static void processIntentAnnotations(final Object target, final Field[] fields) {
         for (final Field field : fields) {
             if (field.isAnnotationPresent(IntentExtra.class)) {
-                IntentProcessor.processIntentAnnotation(IntentProviderFactory.create(target), field);
+                final IntentProvider intentProvider = IntentProviderFactory.create(target);
+                if (intentProvider.getIntent().getExtras() != null) {
+                    IntentProcessor.processIntentAnnotation(intentProvider, field);
+                }
             }
         }
     }

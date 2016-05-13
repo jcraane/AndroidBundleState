@@ -13,10 +13,8 @@ public class SerializableExtraFieldProcessor extends BaseExtraFieldProcessor {
     @Override
     public void process(IntentProvider intentProvider, final IntentExtra intentExtra, final Field field) {
         throwExceptionIfRequiredValueIsNotPresentWithoutDefault(intentExtra, intentProvider);
-        if (intentProvider.getIntent().getExtras() != null) {
-            final Serializable value = intentProvider.getIntent().getExtras().getSerializable(intentExtra.name());
-            processExtra(intentProvider, intentProvider.getTarget(), value, field, intentExtra);
-        }
+        final Serializable value = intentProvider.getIntent().getExtras().getSerializable(intentExtra.name());
+        processExtra(intentProvider, intentProvider.getTarget(), value, field, intentExtra);
     }
 
     private void processExtra(final IntentProvider intentProvider, final Object target, final Serializable value, final Field field, final IntentExtra intentExtra) {
