@@ -17,7 +17,7 @@ public class LongExtraFieldProcessor extends BaseExtraFieldProcessor {
 
     @Override
     public void process(IntentProvider intentProvider, final IntentExtra intentExtra, final Field field) {
-        throwExceptionIfRequiredValueIsNotPresentWithoutDefault(intentExtra, intentProvider);
+        logIfRequiredValueIsNotPresentWithoutDefault(intentExtra, intentProvider);
         final long value = intentProvider.getIntent().getExtras().getLong(intentExtra.name());
         processExtra(intentProvider, intentProvider.getTarget(), value, field, intentExtra);
     }

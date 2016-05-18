@@ -12,7 +12,7 @@ import nl.capaxit.bundlestatelib.state.intent.provider.IntentProvider;
 public class SerializableExtraFieldProcessor extends BaseExtraFieldProcessor {
     @Override
     public void process(IntentProvider intentProvider, final IntentExtra intentExtra, final Field field) {
-        throwExceptionIfRequiredValueIsNotPresentWithoutDefault(intentExtra, intentProvider);
+        logIfRequiredValueIsNotPresentWithoutDefault(intentExtra, intentProvider);
         final Serializable value = intentProvider.getIntent().getExtras().getSerializable(intentExtra.name());
         processExtra(intentProvider, intentProvider.getTarget(), value, field, intentExtra);
     }

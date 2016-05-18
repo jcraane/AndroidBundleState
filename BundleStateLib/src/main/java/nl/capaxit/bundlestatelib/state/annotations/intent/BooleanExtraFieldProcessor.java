@@ -17,7 +17,7 @@ public class BooleanExtraFieldProcessor extends BaseExtraFieldProcessor {
 
     @Override
     public void process(IntentProvider intentProvider, final IntentExtra intentExtra, final Field field) {
-        throwExceptionIfRequiredValueIsNotPresentWithoutDefault(intentExtra, intentProvider);
+        logIfRequiredValueIsNotPresentWithoutDefault(intentExtra, intentProvider);
         final boolean value = intentProvider.getIntent().getExtras().getBoolean(intentExtra.name());
         processExtra(intentProvider, intentProvider.getTarget(), value, field, intentExtra);
     }
