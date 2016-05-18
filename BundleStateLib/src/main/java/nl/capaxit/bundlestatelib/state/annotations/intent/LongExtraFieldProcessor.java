@@ -31,6 +31,8 @@ public class LongExtraFieldProcessor extends BaseExtraFieldProcessor {
             // Ignore for now
         } catch (NumberFormatException e) {
             Log.e(TAG, String.format("Unable to parse defaultValue [%s]", intentExtra.defaultValue()), e);
+        } catch (Exception e) {
+            Log.i(TAG, "Error setting field");
         }
     }
 }

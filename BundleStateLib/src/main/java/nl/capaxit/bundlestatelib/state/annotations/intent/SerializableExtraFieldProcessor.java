@@ -1,5 +1,7 @@
 package nl.capaxit.bundlestatelib.state.annotations.intent;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
 
@@ -10,6 +12,7 @@ import nl.capaxit.bundlestatelib.state.intent.provider.IntentProvider;
  * Created by jamiecraane on 31/03/16.
  */
 public class SerializableExtraFieldProcessor extends BaseExtraFieldProcessor {
+    private static final String TAG = SerializableExtraFieldProcessor.class.getSimpleName();
     @Override
     public void process(IntentProvider intentProvider, final IntentExtra intentExtra, final Field field) {
         logIfRequiredValueIsNotPresentWithoutDefault(intentExtra, intentProvider);
@@ -22,8 +25,8 @@ public class SerializableExtraFieldProcessor extends BaseExtraFieldProcessor {
         try {
             final Object newValue = intentProvider.containsKey(intentExtra.name()) ? value : intentExtra.defaultValue();
             field.set(target, newValue);
-        } catch (IllegalAccessException e) {
-            // Ignore for now
+        } catch (Exception e) {
+            Log.i(TAG, "Error setting field");
         }
     }
 }
